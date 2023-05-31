@@ -4,10 +4,11 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ItemListContainer from './components/ItemListContainer';
 import BannerBottom from './components/BannerBottom';
+import BannerTop from './components/BannerTop';
 import CallToAction from './components/CallToAction';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import BannerTop from './components/BannerTop';
+
 
 function App() {
   return (
