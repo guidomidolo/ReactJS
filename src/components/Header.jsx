@@ -1,7 +1,7 @@
 import NavBar from "./NavBar";
 import LogoRazer from "./images/logoRazer.png"
 import CartWidget from "./CartWidget";
-import { Link } from "react-router-dom";g
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
