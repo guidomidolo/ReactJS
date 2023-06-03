@@ -1,31 +1,31 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
     const NavBar = () => {
     return (
         <ul className="nav justify-content-evenly">
             <li className="nav-item active">
-            <Link className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Store</Link>
+            <NavLink className="nav-link text-secondary" activeclassname="text-dark fw-bold" style={{fontFamily : "RazerF5"}} to="/category/audio">Audio</NavLink>
             </li>
             <li className="nav-item">
-            <Link className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">PC</Link>
+            <NavLink className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/category/mices">Mices</NavLink>
             </li>
             <li className="nav-item">
-            <Link className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Console</Link>
+            <NavLink className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/category/keyboards">Keyboard</NavLink>
             </li>
             <li className="nav-item">  
-            <Link className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Mobile</Link>
+            <NavLink className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Speakers</NavLink>
             </li>
             <li className="nav-item">
-            <Link className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Lifestyle</Link>
+            <NavLink className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Laptop</NavLink>
             </li>
             <li className="nav-item">
-            <Link className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Services</Link>
+            <NavLink className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Services</NavLink>
             </li>
             <li className="nav-item">
-            <Link className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Community</Link>
+            <NavLink className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Community</NavLink>
             </li>
             <li className="nav-item">
-            <Link className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Support</Link>
+            <NavLink className="nav-link text-secondary" style={{fontFamily : "RazerF5"}} to="/">Support</NavLink>
             </li>
         </ul>
     )
