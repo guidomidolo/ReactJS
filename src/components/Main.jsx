@@ -1,9 +1,10 @@
+import Contexto from "./Contexto";
+
 const Main = () => {
     return (
        <div>
-        Main
        </div>
     )
 }
 
-export default Main;
+export default Main;    

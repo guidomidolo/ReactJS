@@ -9,13 +9,15 @@ import CallToAction from './components/CallToAction';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Error404 from './components/Error404';
+import CartContextProvider from './context/CartContext';
 
 
 function App() {
   return (
     <div>
+      <CartContextProvider>
       <BrowserRouter>
-      
+    
       <Header />
       <CallToAction />
       <BannerTop />
@@ -30,6 +32,7 @@ function App() {
       <BannerBottom />
       <Footer />
       </BrowserRouter> 
+      </CartContextProvider>
 
     </div>
   );

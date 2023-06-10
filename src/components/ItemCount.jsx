@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const ItemCount = ({stock}) => {
     const [items, setItems] =  useState(1);
     const [itemStock, setItemStock] = useState(stock);
+    const [itemsCarrito, setItemsCarrito] = useState (0);
 
     const handleSumar = () => {
         items < itemStock && setItems(items +1);  
@@ -14,7 +15,10 @@ const ItemCount = ({stock}) => {
 
     const onAdd = () => {
         items <= itemStock && setItemStock(itemStock - items);
-        itemStock === 0 ? setItems(0) : setItems (1);        
+        itemStock === 0 ? setItems(0) : setItems (1);
+        setItemsCarrito(itemsCarrito + items)
+        
+
     }
 
     useEffect(() => {
