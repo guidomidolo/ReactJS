@@ -1,23 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../context/CartContext";
+
 
 const ItemCount = ({stock}) => {
-    const [items, setItems] =  useState(1);
+    const { itemsSeleccionados, setItemsSeleccionados } = useContext(CartContext);
     const [itemStock, setItemStock] = useState(stock);
-    const [itemsCarrito, setItemsCarrito] = useState (0);
 
     const handleSumar = () => {
-        items < itemStock && setItems(items +1);  
+        itemsSeleccionados < itemStock && setItemsSeleccionados(itemsSeleccionados +1);  
     }
 
     const handleRestar = () => {
-        items > 1 && setItems(items -1);
+        itemsSeleccionados > 1 && setItemsSeleccionados(itemsSeleccionados -1);
     }
 
+    
+    const { itemsEnCarrito, handleCarrito } = useContext(CartContext); 
+
     const onAdd = () => {
-        items <= itemStock && setItemStock(itemStock - items);
-        itemStock === 0 ? setItems(0) : setItems (1);
-        setItemsCarrito(itemsCarrito + items)
-        
+        itemsSeleccionados <= itemStock && setItemStock(itemStock - itemsSeleccionados);
+        itemStock === 0 ? setItemsSeleccionados(0) : setItemsSeleccionados (1);  
+        handleCarrito();
 
     }
 
@@ -32,7 +35,7 @@ const ItemCount = ({stock}) => {
                     <p>Productos en stock: {itemStock}</p>
                     <div className="btn-group w-100" role="group" aria-label="Basic mixed styles example">
                         <button type="button" className="btn btn-light" onClick={handleRestar}>-</button>
-                        <button type="button" className="btn btn-light">{items}</button>
+                        <button type="button" className="btn btn-light">{itemsSeleccionados}</button>
                         <button type="button" className="btn btn-light" onClick={handleSumar}>+</button>
                     </div>
                 </div>
