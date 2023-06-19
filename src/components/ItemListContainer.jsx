@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import ItemList from "./ItemList";
 // import productos from "./json/productos.json";
 import { useParams } from "react-router-dom";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+// import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, getDocs, collection, query, where } from "firebase/firestore";
 
 
 const ItemListContainer = () => {
@@ -22,21 +23,55 @@ const ItemListContainer = () => {
     //     });
     // }, [id]);
 
-    // Acceder a los productos desde Firestone
+    // // Acceder a un documento desde Firestore
+    //     useEffect(() => {
+    //         const db = getFirestore();
+    //         const producto = doc(db, "productos", "GU6NMV51WzYFfw8dpajj")
+    //         getDoc(producto).then(resultado => {
+    //             if (resultado.exists()) {
+    //                 setDatos({id:resultado.id, ...resultado.data()})
+    //             }
+    //             console.log(datos);
+    //         });
+    // }, []);
+
+    // // Acceder a los una colección desde Firestore
+    //     useEffect(() => {
+    //         const db = getFirestore();
+    //         const productosCollection = collection(db, "productos");
+    //         getDocs(productosCollection).then(resultado => {    
+    //             setDatos(resultado.docs.map(producto => ({id:producto.id, ...producto.data()})));
+    //         });
+    //     }, []);
+        
+    //     console.log(datos);
+
+        // Acceder a una colección desde Firestore con filtros
         useEffect(() => {
             const db = getFirestore();
-            const producto = doc(db, "items", "GU6NMV51WzYFfw8dpajj")
-            getDoc(producto).then(resultado => {
-                console.log(resultado);
-                console.log("ID del producto: " + resultado.id);
-            })
-    }, []);
-
+            const productosCollection = collection(db, "productos");
+            const q = id ? query(productosCollection, where("categoria", "==", id)) : productosCollection;
+            getDocs(q).then(resultado => {    
+                if (resultado.size >= 1 ) {
+                    setDatos(resultado.docs.map(producto => ({id:producto.id, ...producto.data()})));
+                }
+            });
+        }, [id]);
+        
+        console.log(datos);
     return (
         <div className="container">
             <div className="row py-5">
                 <h4 className="pt-3" style={{ fontFamily: "RazerF5" , fontSize : 40}}>Products</h4>
-                {/* <ItemList listadoItems={datos}/>           */}
+                <ItemList listadoItems={datos}/>
+                {/* <div className="col-md-4">
+                    <img src={datos.imagen} alt={datos.titulo} className="img-fluid"/>
+                </div>
+                <div className="col-md-8">
+                    <h1>{datos.titulo}</h1>
+                    <h3>{datos.precio}</h3>
+                    <p>{datos.descripcion}</p>
+                </div> */}
             </div>
         </div>
     )

@@ -4,9 +4,9 @@ const Item = ({item}) => {
     return (
         <>
             <div className="col-md-4">
-                <div key={item.idx} className="p-3">
+                <div key={item.id} className="p-3">
                     <div className="card border-0">
-                        <Link to={"/item/" + item.idx} className="text-dark text-decoration-none">
+                        <Link to={"/item/" + item.id} className="text-dark text-decoration-none">
                             <img src={item.imagen} className="card-img-top" alt={item.titulo} />
                                 <div className="card-body">
                                     <p className="card-text" style={{ fontFamily: "RazerF5" , fontSize: 23 }}><b>{item.titulo}</b></p>
