@@ -3,7 +3,8 @@ import ItemList from "./ItemList";
 // import productos from "./json/productos.json";
 import { useParams } from "react-router-dom";
 // import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { getFirestore, getDocs, collection, query, where } from "firebase/firestore";
+import { getFirestore, getDocs, collection, query, where} from "firebase/firestore";
+// import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 
 const ItemListContainer = () => {
@@ -39,10 +40,10 @@ const ItemListContainer = () => {
     //     useEffect(() => {
     //         const db = getFirestore();
     //         const productosCollection = collection(db, "productos");
-    //         getDocs(productosCollection).then(resultado => {    
-    //             setDatos(resultado.docs.map(producto => ({id:producto.id, ...producto.data()})));
-    //         });
-    //     }, []);
+        //     getDocs(productosCollection).then(resultado => {    
+        //         setDatos(resultado.docs.map(producto => ({id:producto.id, ...producto.data()})));
+        //     });
+        // }, []);
         
     //     console.log(datos);
 
@@ -58,20 +59,22 @@ const ItemListContainer = () => {
             });
         }, [id]);
         
-        console.log(datos);
+        // // Proceso de importación de JSON a base de datos Firestore
+        // useEffect(() => {
+        //     const db = getFirestore();
+        //     const productosCollection = collection(db, "productos")
+            
+        //     productos.forEach(prod => {
+        //         addDoc(productosCollection, prod);
+        //     });        
+        //     console.log("Productos cargados!");
+        // }, []);
+
     return (
         <div className="container">
             <div className="row py-5">
                 <h4 className="pt-3" style={{ fontFamily: "RazerF5" , fontSize : 40}}>Products</h4>
                 <ItemList listadoItems={datos}/>
-                {/* <div className="col-md-4">
-                    <img src={datos.imagen} alt={datos.titulo} className="img-fluid"/>
-                </div>
-                <div className="col-md-8">
-                    <h1>{datos.titulo}</h1>
-                    <h3>{datos.precio}</h3>
-                    <p>{datos.descripcion}</p>
-                </div> */}
             </div>
         </div>
     )

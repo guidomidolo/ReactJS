@@ -10,6 +10,7 @@ import ItemDetailContainer from './components/ItemDetailContainer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Error404 from './components/Error404';
 import CartContextProvider from './context/CartContext';
+import Cart from './components/Cart';
 
 
 function App() {
@@ -20,13 +21,13 @@ function App() {
     
       <Header />
       <CallToAction />
-      <BannerTop />
 
       <Routes>      
       <Route path={"/"} element={<ItemListContainer />} />
       <Route path={"/category/:id"} element={<ItemListContainer />} />
       <Route path={"/item/:id"} element={<ItemDetailContainer />} />
       <Route path={"/*"} element={<Error404 />} />
+      <Route path={"/cart"} element={<Cart />} />
       </Routes>
 
       <BannerBottom />

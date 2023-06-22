@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 
 const ItemCount = ({stock}) => {
@@ -14,13 +15,15 @@ const ItemCount = ({stock}) => {
         itemsSeleccionados > 1 && setItemsSeleccionados(itemsSeleccionados -1);
     }
 
-    
+    const [itemAdded, setItemAdded] = useState(false);
+
     const { itemsEnCarrito, handleCarrito } = useContext(CartContext); 
 
     const onAdd = () => {
         itemsSeleccionados <= itemStock && setItemStock(itemStock - itemsSeleccionados);
         itemStock === 0 ? setItemsSeleccionados(0) : setItemsSeleccionados (1);  
         handleCarrito();
+        setItemAdded(true);
 
     }
 
@@ -43,7 +46,7 @@ const ItemCount = ({stock}) => {
             <div className="row">
                 <div className="col pt-3">
                     {
-                        itemStock > 0 ? <button type="button" className="btn btn-secondary w-100" style={{}} onClick={onAdd} >Añadir al carrito</button> : <button type="button" className="btn btn-secondary w-100 disabled" onClick={onAdd} >Añadir al carrito</button>
+                        itemAdded ? <Link to={"/cart"} className="btn btn-secondary w-100">Finalizar compra</Link> : (itemStock > 0 ? <button type="button" className="btn btn-secondary w-100" style={{}} onClick={onAdd} >Añadir al carrito</button> : <button type="button" className="btn btn-secondary w-100 disabled" >Añadir al carrito</button>)
                     }
                 </div>
             </div>
