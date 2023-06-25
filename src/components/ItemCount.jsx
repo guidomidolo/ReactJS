@@ -1,58 +1,58 @@
-import { useContext, useEffect, useState } from "react";
-import { CartContext } from "../context/CartContext";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-
-const ItemCount = ({stock}) => {
-    const { itemsSeleccionados, setItemsSeleccionados } = useContext(CartContext);
+const ItemCount = ({stock, onAdd}) => {
+    const [items, setItems] = useState(1);
     const [itemStock, setItemStock] = useState(stock);
+    const [itemAdded, setItemAdded] = useState(false);
 
     const handleSumar = () => {
-        itemsSeleccionados < itemStock && setItemsSeleccionados(itemsSeleccionados +1);  
+        if (items < itemStock) {
+            setItems(items + 1);
+        }
     }
 
     const handleRestar = () => {
-        itemsSeleccionados > 1 && setItemsSeleccionados(itemsSeleccionados -1);
+        if (items > 1) {
+            setItems(items - 1);
+        }
     }
 
-    const [itemAdded, setItemAdded] = useState(false);
-
-    const { itemsEnCarrito, handleCarrito } = useContext(CartContext); 
-
-    const onAdd = () => {
-        itemsSeleccionados <= itemStock && setItemStock(itemStock - itemsSeleccionados);
-        itemStock === 0 ? setItemsSeleccionados(0) : setItemsSeleccionados (1);  
-        handleCarrito();
-        setItemAdded(true);
-
+    const addToCart = () => {
+        if (items <= itemStock) {
+            setItemStock(itemStock - items);
+            setItems(1);
+            setItemAdded(true);
+            onAdd(items);
+        }
     }
 
     useEffect(() => {
-        setItemStock(stock)
+        setItemStock(stock);
     }, [stock]);
 
     return (
         <div className="container">
             <div className="row">
                 <div className="col">
-                    <p>Productos en stock: {itemStock}</p>
-                    <div className="btn-group w-100" role="group" aria-label="Basic mixed styles example">
+                    <div className="btn-group w-100" role="group" aria-label="Basic example">
                         <button type="button" className="btn btn-light" onClick={handleRestar}>-</button>
-                        <button type="button" className="btn btn-light">{itemsSeleccionados}</button>
+                        <button type="button" className="btn btn-light">{items}</button>
                         <button type="button" className="btn btn-light" onClick={handleSumar}>+</button>
                     </div>
                 </div>
             </div>
             <div className="row">
                 <div className="col pt-3">
+                    {itemAdded ? <Link to={"/cart"} className="btn btn-secondary w-100">Finalizar Compra</Link> : <button type="button" className="btn btn-secondary w-100" onClick={addToCart}>Agregar al Carrito</button>}
+                </div>
+            </div>
+            <div className="col pt-3">
                     {
                         itemAdded ? <Link to={"/cart"} className="btn btn-secondary w-100">Finalizar compra</Link> : (itemStock > 0 ? <button type="button" className="btn btn-secondary w-100" style={{}} onClick={onAdd} >Añadir al carrito</button> : <button type="button" className="btn btn-secondary w-100 disabled" >Añadir al carrito</button>)
                     }
                 </div>
-            </div>
-        </div>
-
-
+        </div>        
     )
 }
 
