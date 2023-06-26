@@ -47,11 +47,6 @@ const ItemCount = ({stock, onAdd}) => {
                     {itemAdded ? <Link to={"/cart"} className="btn btn-secondary w-100">Finalizar Compra</Link> : <button type="button" className="btn btn-secondary w-100" onClick={addToCart}>Agregar al Carrito</button>}
                 </div>
             </div>
-            <div className="col pt-3">
-                    {
-                        itemAdded ? <Link to={"/cart"} className="btn btn-secondary w-100">Finalizar compra</Link> : (itemStock > 0 ? <button type="button" className="btn btn-secondary w-100" style={{}} onClick={onAdd} >Añadir al carrito</button> : <button type="button" className="btn btn-secondary w-100 disabled" >Añadir al carrito</button>)
-                    }
-                </div>
         </div>        
     )
 }
